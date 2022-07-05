@@ -1,0 +1,3 @@
+rootProject.name = 'v1service'
+include 'domain'
+include 'infrastructure'
