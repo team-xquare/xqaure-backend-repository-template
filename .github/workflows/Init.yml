@@ -8,7 +8,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      REPOSITORY_NAME: echo ${{ github.event.repository.name }} | cut -d '-' -f3
+      REPOSITORY_NAME: ${{ github.event.repository.name }} | cut -d '-' -f3
       ROOT_DIRECTORY: ${{ github.workspace }}
     if: ${{ contains(github.event.head_commit.message, 'Initial commit') }}
 
@@ -17,6 +17,7 @@ jobs:
 
       - name: Rename File
         run: |
+          sudo apt install rename
           rename v1service "v1service${{ env.REPOSITORY_NAME }}" ${{ env.ROOT_DIRECTORY }}/domain/src/main/java/io/github/v1service
           rename domain "${{ env.REPOSITORY_NAME }}-domain" ${{ env.ROOT_DIRECTORY }}/domain          
           rename v1service "v1service${{ env.REPOSITORY_NAME }}" ${{ env.ROOT_DIRECTORY }}/infrastructure/src/main/java/io/github/v1service
