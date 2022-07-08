@@ -20,9 +20,9 @@ jobs:
       - name: Rename File
         run: |
           sudo apt install rename
-          echo ${{ env.DOMAIN_NAME }}
-          rename 's/v1service/v1service${{ env.REPOSITORY_NAME }}/' ${{ env.ROOT_DIRECTORY }}/domain/src/main/java/io/github/v1service
-          rename 's/domain/${{ env.REPOSITORY_NAME }}-domain/' ${{ env.ROOT_DIRECTORY }}/domain          
-          rename 's/v1service/v1service${{ env.REPOSITORY_NAME }}/' ${{ env.ROOT_DIRECTORY }}/infrastructure/src/main/java/io/github/v1service
-          rename 's/infrastructure/${{ env.REPOSITORY_NAME }}-infrastructure/' ${{ env.ROOT_DIRECTORY }}/infrastructure
+          echo '${{ env.DOMAIN_NAME }}'
+          rename 's/v1service/v1service${{ env.DOMAIN_NAME }}/' ${{ env.ROOT_DIRECTORY }}/domain/src/main/java/io/github/v1service
+          rename 's/domain/${{ env.DOMAIN_NAME }}-domain/' ${{ env.ROOT_DIRECTORY }}/domain          
+          rename 's/v1service/v1service${{ env.DOMAIN_NAME }}/' ${{ env.ROOT_DIRECTORY }}/infrastructure/src/main/java/io/github/v1service
+          rename 's/infrastructure/${{ env.DOMAIN_NAME }}-infrastructure/' ${{ env.ROOT_DIRECTORY }}/infrastructure
 
