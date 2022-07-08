@@ -22,9 +22,8 @@ jobs:
 
       - name: Rename File
         run: |
-          echo ${{ env.DOMAIN_NAME_UPPER_CASE }}
-          sed -i 's/V1ServiceApplication/V1Service${${{ env.DOMAIN_NAME }}^}Application/g' ${{ env.ROOT_DIRECTORY }}/infrastructure/src/main/java/io/github/v1service/V1ServiceApplication.java
-          mv ${{ env.ROOT_DIRECTORY }}/infrastructure/src/main/java/io/github/v1service/V1ServiceApplication.java ${{ env.ROOT_DIRECTORY }}/infrastructure/src/main/java/io/github/v1service/V1Service${${{ env.DOMAIN_NAME }}^}Application.java
+          sed -i 's/V1ServiceApplication/V1Service${{ env.DOMAIN_NAME_UPPER_CASE }}Application/g' ${{ env.ROOT_DIRECTORY }}/infrastructure/src/main/java/io/github/v1service/V1ServiceApplication.java
+          mv ${{ env.ROOT_DIRECTORY }}/infrastructure/src/main/java/io/github/v1service/V1ServiceApplication.java ${{ env.ROOT_DIRECTORY }}/infrastructure/src/main/java/io/github/v1service/V1Service${{ env.DOMAIN_NAME_UPPER_CASE }}Application.java
           mv ${{ env.ROOT_DIRECTORY }}/domain/src/main/java/io/github/v1service ${{ env.ROOT_DIRECTORY }}/domain/src/main/java/io/github/v1service${{ env.DOMAIN_NAME }} 
           mv ${{ env.ROOT_DIRECTORY }}/domain ${{ env.ROOT_DIRECTORY }}/${{ env.DOMAIN_NAME }}-domain         
           mv ${{ env.ROOT_DIRECTORY }}/infrastructure/src/main/java/io/github/v1service ${{ env.ROOT_DIRECTORY }}/infrastructure/src/main/java/io/github/v1service${{ env.DOMAIN_NAME }}
