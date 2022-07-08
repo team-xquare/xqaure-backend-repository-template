@@ -19,7 +19,7 @@ jobs:
 
       - name: Rename File
         run: |
-          sed -i 's/V1ServiceApplication/V1Service${{ env.DOMAIN_NAME }}Application/g' ${{ env.ROOT_DIRECTORY }}/infrastructure/src/main/java/io/github/v1service/V1ServiceApplication.java
+#          sed -i 's/V1ServiceApplication/V1Service${{ env.DOMAIN_NAME }}Application/g' ${{ env.ROOT_DIRECTORY }}/infrastructure/src/main/java/io/github/v1service/V1ServiceApplication.java
           mv ${{ env.ROOT_DIRECTORY }}/infrastructure/src/main/java/io/github/v1service/V1ServiceApplication ${{ env.ROOT_DIRECTORY }}/infrastructure/src/main/java/io/github/v1service/V1Service${{ env.DOMAIN_NAME }}Application
           mv ${{ env.ROOT_DIRECTORY }}/domain/src/main/java/io/github/v1service ${{ env.ROOT_DIRECTORY }}/domain/src/main/java/io/github/v1service${{ env.DOMAIN_NAME }} 
           mv ${{ env.ROOT_DIRECTORY }}/domain ${{ env.ROOT_DIRECTORY }}/${{ env.DOMAIN_NAME }}-domain         
