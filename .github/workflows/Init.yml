@@ -17,11 +17,12 @@ jobs:
       - name: Set Domain Name
         run: |
           echo "DOMAIN_NAME=$(echo ${{ github.event.repository.name }} | cut -d '-' -f3)" >> $GITHUB_ENV
+          echo "DOMAIN_NAME_UPPER_CASE=$(echo ${${{ env.DOMAIN_NAME }}^} )
         
 
       - name: Rename File
         run: |
-          echo ${${{ env.DOMAIN_NAME }}^f}
+          echo ${{ env.DOMAIN_NAME_UPPER_CASE }}
           sed -i 's/V1ServiceApplication/V1Service${${{ env.DOMAIN_NAME }}^}Application/g' ${{ env.ROOT_DIRECTORY }}/infrastructure/src/main/java/io/github/v1service/V1ServiceApplication.java
           mv ${{ env.ROOT_DIRECTORY }}/infrastructure/src/main/java/io/github/v1service/V1ServiceApplication.java ${{ env.ROOT_DIRECTORY }}/infrastructure/src/main/java/io/github/v1service/V1Service${${{ env.DOMAIN_NAME }}^}Application.java
           mv ${{ env.ROOT_DIRECTORY }}/domain/src/main/java/io/github/v1service ${{ env.ROOT_DIRECTORY }}/domain/src/main/java/io/github/v1service${{ env.DOMAIN_NAME }} 
