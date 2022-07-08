@@ -8,17 +8,19 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      REPOSITORY_NAME: ${{ github.event.repository.name }} | cut -d '-' -f3
       ROOT_DIRECTORY: ${{ github.workspace }}
     if: ${{ contains(github.event.head_commit.message, 'Initial commit') }}
 
     steps:
       - uses: actions/checkout@v2
 
+      - name: Set Domain Name
+        run: echo "DOMAIN_NAME=$(echo ${{ github.event.repository.name }} | cut -d '-' -f3)" >> $GITHUB_ENV
+
       - name: Rename File
         run: |
           sudo apt install rename
-          echo '${{ github.event.repository.name }} | cut -d '-' -f3'
+          echo ${{ env.DOMAIN_NAME }}
           rename 's/v1service/v1service${{ env.REPOSITORY_NAME }}/' ${{ env.ROOT_DIRECTORY }}/domain/src/main/java/io/github/v1service
           rename 's/domain/${{ env.REPOSITORY_NAME }}-domain/' ${{ env.ROOT_DIRECTORY }}/domain          
           rename 's/v1service/v1service${{ env.REPOSITORY_NAME }}/' ${{ env.ROOT_DIRECTORY }}/infrastructure/src/main/java/io/github/v1service
