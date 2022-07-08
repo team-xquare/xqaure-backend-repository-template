@@ -19,9 +19,15 @@ jobs:
 
       - name: Rename File
         run: |
-          echo v1service${{ env.DOMAIN_NAME }}
           mv ${{ env.ROOT_DIRECTORY }}/domain/src/main/java/io/github/v1service ${{ env.ROOT_DIRECTORY }}/domain/src/main/java/io/github/v1service${{ env.DOMAIN_NAME }} 
           mv ${{ env.ROOT_DIRECTORY }}/domain ${{ env.ROOT_DIRECTORY }}/${{ env.DOMAIN_NAME }}-domain         
           mv ${{ env.ROOT_DIRECTORY }}/infrastructure/src/main/java/io/github/v1service ${{ env.ROOT_DIRECTORY }}/infrastructure/src/main/java/io/github/v1service${{ env.DOMAIN_NAME }}
           mv ${{ env.ROOT_DIRECTORY }}/infrastructure ${{ env.ROOT_DIRECTORY }}/${{ env.DOMAIN_NAME }}-infrastructure 
 
+      - name: Commit changes
+        uses: EndBug/add-and-commit@v9
+        with:
+          author_name: parksangwoo1617
+          author_email: b01056721617@gmail.com
+          message: 'Rename Files'
+          add: '.'
