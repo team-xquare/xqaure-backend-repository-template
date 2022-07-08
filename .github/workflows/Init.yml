@@ -17,7 +17,7 @@ jobs:
       - name: Set Domain Name
         run: |
           echo "DOMAIN_NAME=$(echo ${{ github.event.repository.name }} | cut -d '-' -f3)" >> $GITHUB_ENV
-          echo "DOMAIN_NAME_UPPER_CASE=$(echo ${{ env.DOMAIN_NAME }} | sed -e "s/\b\(.\)/\u\1/g" )" >> $GITHUB_ENV
+          echo "DOMAIN_NAME_UPPER_CASE=$(echo ${{ github.event.repository.name }} | cut -d '-' -f3 | sed -e "s/\b\(.\)/\u\1/g" )" >> $GITHUB_ENV
         
 
       - name: Rename File
